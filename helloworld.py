@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from twilio.rest import Client
 import time
 
 display = Display(visible=0, size=(800, 600))
@@ -17,7 +16,7 @@ client = Client(account_sid, auth_token)
 driver.get('https://www.moneycontrol.com/india/stockpricequote/computers-software-medium-small/firstsourcesolutions/FS07')
 i=1
 try:
-    while(i<30):
+    while(i<10):
             element = WebDriverWait(driver, 50).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id='Bse_Prc_tick_div']"))
             )
@@ -25,7 +24,7 @@ try:
             print (project_field.text)
             driver.refresh()
             i=i+1
-            time.sleep(50)
+            time.sleep(2)
             if (i==29):
                 message = client.messages.create(
                               body='sdsdsdsdsdwsdfsdwsdsd sedwdswdf!',
@@ -38,3 +37,4 @@ try:
             
 except:
     print("error")
+
